@@ -1,7 +1,7 @@
 <template>
     <main class="debug">
         <div class="container">
-            <div v-if="!ready" class="cont_loader">
+            <div v-if="musics.length != responseDataLength" class="cont_loader">
                 <img src="../assets/img/loader.gif" alt="">
             </div>
             <div v-else class="content_box" v-for="(music, i) in musics" :key="i">
@@ -22,15 +22,14 @@ export default {
     data() {
         return {
             musics : [],
-            ready : false
+            responseDataLength : null
         }
     },
     created() {
         axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then((response) => {
+                this.responseDataLength = response.data.response.length;
                 this.musics = response.data.response;
-                this.ready = response.data.success;
-                
             })
     }
 }
