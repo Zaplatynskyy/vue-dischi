@@ -1,7 +1,10 @@
 <template>
     <main class="debug">
         <div class="container">
-            <div class="content_box" v-for="(music, i) in musics" :key="i">
+            <div v-if="musics.length < 10" class="cont_loader">
+                <img src="../assets/img/loader.gif" alt="">
+            </div>
+            <div v-else class="content_box" v-for="(music, i) in musics" :key="i">
                 <Box :music="music"/>
             </div>
         </div>
@@ -18,13 +21,14 @@ export default {
     },
     data() {
         return {
-            musics : null
+            musics : []
         }
     },
     created() {
         axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then((response) => {
-                this.musics = response.data.response
+                this.musics = response.data.response;
+                this.dataLenght = response.data.response.length
             })
     }
 }
@@ -41,6 +45,7 @@ export default {
         .container {
             padding: 20px 0;
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
         }
 
