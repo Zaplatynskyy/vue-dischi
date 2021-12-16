@@ -1,26 +1,21 @@
 <template>
     <main class="debug">
-        <div class="container py-5">
-            <div class="row gy-3">
-                <div class="col" v-for="(music, i) in musics" :key="i">
-                    <div class="box">
-                        <img src="https://www.onstageweb.com/wp-content/uploads/2018/09/bon-jovi-new-jersey.jpg" alt="">
-
-                        <h2>New Jersey</h2>
-                        
-                        <div class="name">Bon Jovi</div>
-                        <div class="year">1988</div>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="content_box" v-for="(music, i) in musics" :key="i">
+                <Box :music="music"/>
             </div>
         </div>
     </main>
 </template>
 
 <script>
+import Box from './main_components/Box.vue'
 import axios from 'axios'
 export default {
     name : 'Main',
+    components : {
+        Box
+    },
     data() {
         return {
             musics : null
@@ -36,23 +31,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../node_modules/bootstrap/scss/bootstrap-grid.scss';
+@import '../assets/style/variables.scss';
+
     main {
         height: calc(100vh - 70px);
-        background-color: #1e2d3b;
+        background-color: $secondary_color;
         overflow: auto;
-    }
 
-    // DEBUG
-    .debug .box {
-        width: 200px;
-        height: 300px;
-        text-align: center;
-        background-color: red;
-        padding: 10px;
+        .container {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            flex-wrap: wrap;
+        }
 
-        img {
-            width: 100%;       }
+        .content_box {
+            width: calc(100% / 5 - 30px);
+            margin: 10px 0;
+        }
+        
     }
     
 </style>

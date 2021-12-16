@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;900&display=swap');
+
 /*----------------------
     RESET
 ----------------------*/
@@ -5,4 +7,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/*----------------------
+    CONTAINER
+----------------------*/
+
+.container {
+    width: 60%;
+    margin: auto;
+}
+
+/*----------------------
+    TYPO
+----------------------*/
+
+body {
+    font-family: 'Lato', sans-serif;
 }

@@ -11,9 +11,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/style/variables.scss';
+
     header {
         height: 70px;
-        background-color: #2e3a46;
+        background-color: $primary_color;
 
         img {
             height: 100%;
