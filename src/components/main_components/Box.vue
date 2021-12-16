@@ -22,7 +22,7 @@ export default {
 @import '../../assets/style/variables.scss';
 
     .box {
-        height: 350px;
+        height: 100%;
         text-align: center;
         background-color: $primary_color;
         padding: 20px;

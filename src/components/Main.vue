@@ -41,14 +41,12 @@ export default {
         .container {
             padding: 20px 0;
             display: flex;
-            justify-content: space-around;
-            align-items: stretch;
             flex-wrap: wrap;
         }
 
         .content_box {
             width: calc(100% / 5 - 30px);
-            margin: 10px 0;
+            margin: 10px 15px;
         }
         
     }
