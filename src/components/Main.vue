@@ -2,12 +2,12 @@
     <main>
         <div id="content_select">
             <select id="genre" class="select" v-model="selectGenre">
-                <option value="All">All</option>
+                <option value="">All</option>
                 <option :value="genre" v-for="(genre, i) in genres" :key="i">{{genre}}</option>
             </select>
 
             <select id="albums" class="select" v-model="selectAuthor">
-                <option value="All">All</option>
+                <option value="">All</option>
                 <option :value="author" v-for="(author, i) in authors" :key="i">{{author}}</option>
             </select>
         </div>
@@ -16,7 +16,7 @@
                 <img src="../assets/img/loader.gif" alt="">
             </div>
             
-            <div v-else class="content_box" v-for="(music, i) in filterByGenre" :key="i">
+            <div v-else class="content_box" v-for="(music, i) in filter" :key="i">
                 <Box :music="music"/>
             </div>
         </div>
@@ -38,8 +38,8 @@ export default {
             responseDataLength : null,
             genres : [],
             authors : [],
-            selectGenre : 'All',
-            selectAuthor : 'All'
+            selectGenre : '',
+            selectAuthor : ''
 
         }
     },
@@ -72,15 +72,11 @@ export default {
     },
 
     computed : {
-        filterByGenre() {
-            if(this.selectGenre == 'All') {
-                return this.musics
-            } else {
-                return this.musics.filter( music => {
-                    return music.genre.includes(this.selectGenre)
-                });
-            }
-        }
+        filter() {
+            return this.musics.filter( music => {
+                    return music.genre.includes(this.selectGenre) && music.author.includes(this.selectAuthor)
+            });
+        },
     }
 }
 </script>
