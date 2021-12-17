@@ -42,7 +42,7 @@ export default {
         }
 
         .year {
-            margin-bottom : 50px
+            margin-bottom : 30px
         }
     }
 </style>
