@@ -1,5 +1,6 @@
 <template>
     <header>
+        <!-- logo pagina -->
         <img src="../assets/img/logo.png" alt="">
     </header>
 </template>
@@ -17,6 +18,7 @@ export default {
         height: 70px;
         background-color: $primary_color;
 
+        // logo pagina
         img {
             height: 100%;
             padding: 10px;

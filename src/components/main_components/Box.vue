@@ -1,9 +1,12 @@
 <template>
     <div class="box">
+        <!-- immagine album -->
         <img :src="music.poster" :alt="music.author">
 
+        <!-- titolo album -->
         <h3>{{music.title}}</h3>
         
+        <!-- nome autore e anno uscita album -->
         <div class="name">{{music.author}}</div>
         <div class="year">{{music.year}}</div>
     </div>
