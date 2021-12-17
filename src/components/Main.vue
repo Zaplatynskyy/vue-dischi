@@ -1,14 +1,14 @@
 <template>
     <main>
         <div id="content_select">
-            <select id="genre" class="select">
-                <option value="all">All</option>
-                <option :value="i" v-for="(genre, i) in genres" :key="i">{{genre}}</option>
+            <select id="genre" class="select" v-model="selectGenre">
+                <option value="All">All</option>
+                <option :value="genre" v-for="(genre, i) in genres" :key="i">{{genre}}</option>
             </select>
 
-            <select id="albums" class="select">
-                <option value="all">All</option>
-                <option :value="i" v-for="(author, i) in authors" :key="i">{{author}}</option>
+            <select id="albums" class="select" v-model="selectAuthor">
+                <option value="All">All</option>
+                <option :value="author" v-for="(author, i) in authors" :key="i">{{author}}</option>
             </select>
         </div>
         <div class="container">
@@ -16,7 +16,7 @@
                 <img src="../assets/img/loader.gif" alt="">
             </div>
             
-            <div v-else class="content_box" v-for="(music, i) in musics" :key="i">
+            <div v-else class="content_box" v-for="(music, i) in filterByGenre" :key="i">
                 <Box :music="music"/>
             </div>
         </div>
@@ -26,6 +26,7 @@
 <script>
 import Box from './main_components/Box.vue'
 import axios from 'axios'
+
 export default {
     name : 'Main',
     components : {
@@ -36,12 +37,15 @@ export default {
             musics : [],
             responseDataLength : null,
             genres : [],
-            authors : []
+            authors : [],
+            selectGenre : 'All',
+            selectAuthor : 'All'
+
         }
     },
 
     methods : {
-        filter() {
+        filterX() {
             this.musics.forEach( music => {
                 if(!this.genres.includes(music.genre)) {
                     this.genres.push(music.genre);
@@ -53,7 +57,7 @@ export default {
                     this.authors.sort()
                 }
             }); 
-        },
+        }
     },
 
     created() {
@@ -62,9 +66,21 @@ export default {
                 this.responseDataLength = response.data.response.length;
                 this.musics = response.data.response;
                 
-                this.filter();
+                this.filterX();
             }
         )        
+    },
+
+    computed : {
+        filterByGenre() {
+            if(this.selectGenre == 'All') {
+                return this.musics
+            } else {
+                return this.musics.filter( music => {
+                    return music.genre.includes(this.selectGenre)
+                });
+            }
+        }
     }
 }
 </script>
